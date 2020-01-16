@@ -43,4 +43,9 @@ view: order_items {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
   }
+
+  measure: count_distint_weird_behavior {
+    type: count_distinct
+    sql_distinct_key: ${order_id} ;;
+  }
 }
