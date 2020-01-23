@@ -30,10 +30,10 @@ explore: inventory_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
-  access_filter: {
-    field: products.brand
-    user_attribute: test_attribute_plz_break
-  }
+#   access_filter: {
+#     field: products.brand
+#     user_attribute: test_attribute_plz_break
+#   }
 }
 
 explore: order_items {
