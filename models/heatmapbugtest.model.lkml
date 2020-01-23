@@ -5,10 +5,9 @@ include: "/views/**/*.view"
 
 datagroup: datagroup {
    sql_trigger: SELECT CURDATE() ;;
-  max_cache_age: "1 hour"
-}
+  }
 
-
+include: "*.dashboard.lookml"
 
 
 explore: connection_reg_r3 {}
@@ -84,20 +83,4 @@ explore: user_data {
     sql_on: ${user_data.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
-}
-
-explore: derived_table_test {}
-
-explore: users {}
-
-explore: users_nn {}
-
-explore: dg_test {
-  from:  order_items
-  join: orders {
-    type: left_outer
-    sql_on: ${dg_test.order_id} = ${orders.id};;
-    relationship: many_to_one
-    fields: [orders.created_date, orders.created_raw, orders.created_week,orders.created_month]
   }
-}
