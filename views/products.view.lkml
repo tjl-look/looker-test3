@@ -6,6 +6,7 @@ view: products {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    html: <span title="{{ category._rendered_value }}">{{ rendered_value }}</span>;;
   }
 
   dimension: brand {
@@ -41,6 +42,21 @@ view: products {
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
+  }
+  dimension: test {
+    type: string
+    sql: CASE WHEN ${department} = "male" THEN "x"
+    WHEN ${department} = "female" THEN "y"
+    END;;
+  }
+  measure: test_count {
+    type: count_distinct
+    sql: CONCAT(${category},${department});;
+  }
+
+  measure: avg_measure {
+    type: average
+    sql: ${retail_price} ;;
   }
 
   measure: count {

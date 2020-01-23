@@ -3,12 +3,18 @@ view: derived_table_test {
   }
 
   derived_table: {
-    sql: SELECT brand as brand
+    sql: SELECT brand as brand,
     category as category
     FROM demo_db.products
-    WHERE category = (SELECT category
+    WHERE category IN (SELECT category
                         FROM demo_db.products
-                        WHERE {% condition templated_filter_test %} category {% endcondition %} ;;
+                        WHERE {% condition templated_filter_test %} brand {% endcondition %} ;;
   }
+
+  dimension: category {
+    sql: ${TABLE}.category ;;
+  }
+
+
 
   }

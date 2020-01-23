@@ -1,16 +1,15 @@
 connection: "thelook"
-
+#look at this change tim
 # include all the views
 include: "/views/**/*.view"
 
-datagroup: heatmapbugtest_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+datagroup: datagroup {
+   sql_trigger: SELECT CURDATE() ;;
   max_cache_age: "1 hour"
 }
 
-persist_with: heatmapbugtest_default_datagroup
 
-explore: calendar_table {}
+
 
 explore: connection_reg_r3 {}
 
@@ -32,15 +31,19 @@ explore: inventory_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+  access_filter: {
+    field: products.brand
+    user_attribute: test_attribute_plz_break
+  }
 }
 
 explore: order_items {
-  join: orders {
+  view_label: "weeeeeeeeee"
+   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
   }
-
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
@@ -88,3 +91,13 @@ explore: derived_table_test {}
 explore: users {}
 
 explore: users_nn {}
+
+explore: dg_test {
+  from:  order_items
+  join: orders {
+    type: left_outer
+    sql_on: ${dg_test.order_id} = ${orders.id};;
+    relationship: many_to_one
+    fields: [orders.created_date, orders.created_raw, orders.created_week,orders.created_month]
+  }
+}
