@@ -1,5 +1,4 @@
-# If necessary, uncomment the line below to include explore_source.
-# include: "heatmapbugtest.model.lkml"
+
 
 view: inventory_items_pdt {
   derived_table: {
