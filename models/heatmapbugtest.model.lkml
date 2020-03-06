@@ -63,6 +63,11 @@ explore: order_items {
 }
 
 explore: orders {
+  always_filter: {
+    filters: {
+      field: created
+    }
+  }
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;

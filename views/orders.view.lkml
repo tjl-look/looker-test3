@@ -2,10 +2,17 @@ view: orders {
   sql_table_name: demo_db.orders ;;
   drill_fields: [id]
 
+  #REMOVE THE COMMENT BELOW TO SEE THE ERROR
+  #extends: [orders]
+
   dimension: id {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+  }
+
+  filter: created {
+    type: date
   }
 
   dimension_group: created {
