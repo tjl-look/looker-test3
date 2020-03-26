@@ -12,6 +12,13 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    html: <a href = "/dashboards/3047?Brand={{ filterable_value }}" target = "_blank"> {{rendered_value}} </a>;;
+  }
+
+  dimension: brand2 {
+    type: string
+    sql: "I will, have multiple, commas," ;;
+    html:  html: <a href = "/dashboards/3047?Brand2={{ filterable_value }}" target = "_blank"> {{rendered_value}} </a> ;;
   }
 
   dimension: category {

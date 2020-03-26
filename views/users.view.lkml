@@ -68,6 +68,11 @@ view: users {
     sql: ${TABLE}.zip ;;
   }
 
+  dimension: multiple_commas {
+    type: string
+    sql: CONCAT(${city},",",${state},",",${country}) ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]

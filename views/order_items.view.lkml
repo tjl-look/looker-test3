@@ -51,7 +51,8 @@ view: order_items {
       quarter,
       year,
       day_of_year,
-      day_of_week
+      day_of_week,
+      month_num
     ]
     sql: ${TABLE}.returned_at ;;
   }
@@ -65,7 +66,7 @@ view: order_items {
   }
 
 
-  measure: count {
+  measure: count_test {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
     html: <a href = "">{{ value }}</a>;;
@@ -91,6 +92,11 @@ view: order_items {
   measure: sum_blank {
     type: sum
     sql: ${TABLE}.sale_price ;;
+  }
+
+  measure: date_Time {
+    type: date_time
+    sql: MAX(${returned_raw}) ;;
   }
 
 
